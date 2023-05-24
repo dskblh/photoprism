@@ -462,21 +462,8 @@ export default {
       if(!value || !themes.Get(value)) {
         return false;
       }
-
-      this.$sponsorFeatures().then(() => {
-        this.currentTheme = value;
-        this.onChange();
-      }).catch(() => {
-        if (themes.Get(value).sponsor) {
-          this.dialog.sponsor = true;
-          this.$nextTick(() => {
-            this.settings.ui.theme = this.currentTheme;
-          });
-        } else {
-          this.currentTheme = value;
-          this.onChange();
-        }
-      });
+      this.currentTheme = value;
+      this.onChange();
     },
     onChangeMapsStyle(value) {
       if (!value) {
@@ -489,21 +476,9 @@ export default {
         return false;
       }
 
-      this.$sponsorFeatures().then(() => {
-        this.currentMapsStyle = value;
-        this.onChange();
-      }).catch(() => {
-        if (style.sponsor) {
-          this.dialog.sponsor = true;
-          this.$nextTick(() => {
-            this.settings.maps.style = this.currentMapsStyle;
-          });
-        } else {
-          this.currentMapsStyle = value;
-          this.onChange();
-        }
-      });
-    },
+      this.currentMapsStyle = value;
+      this.onChange();
+    }，
     onChange() {
       const locale = this.settings.changed("ui", "language");
 
